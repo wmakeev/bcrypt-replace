@@ -1,11 +1,11 @@
 const bcrypt = require("bcryptjs");
 
-String.prototype.hash = function () {
-  return bcrypt.hashSync(this.toString(), 10);
+exports.hash = function (value) {
+  return bcrypt.hashSync(String(value), 10);
 };
 
-String.prototype.compareHash = function (hash) {
-  return bcrypt.compareSync(this.toString(), hash);
+exports.compareHash = function (str, hash) {
+  return bcrypt.compareSync(String(str), hash);
 };
 
 exports.getHasher = (salt) => (value) => {
